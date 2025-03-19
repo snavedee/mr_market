@@ -1,0 +1,50 @@
+/* Navbar styles */
+.navbar {
+    background-color: #2c3e50; /* Darker blue */
+}
+
+.navbar-brand {
+    color: #ecf0f1 !important; /* Light text */
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    color: #ecf0f1; /* Match brand */
+    padding: 0.5rem 1rem; /* More clickable area */
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #3498db; /* Blue hover */
+}
+
+/* Active link styling */
+.nav-item.active .nav-link {
+    border-bottom: 2px solid #3498db; /* Active page indicator */
+}
+
+/* General page styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+/* Card styles */
+.card {
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Links in bg-primary sections */
+.bg-primary.text-white p a {
+    color: #f1c40f !important; /* Bright yellow */
+    text-decoration: underline !important;
+    transition: color 0.3s ease-in-out;
+}
+
+.bg-primary.text-white p a:hover {
+    color: #e91e63 !important; /* Hot pink on hover */
+}
