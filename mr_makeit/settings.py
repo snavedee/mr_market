@@ -88,6 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'dj_database_url.parse(os.getenv("postgresql://blog_db_a66z_user:BXYo130GPNlQ8g1HHCvdec7MH7IPKNa7@dpg-cvfas9lds78s73fjclt0-a/blog_db_a66z"))'
     }
 }
 
