@@ -91,18 +91,22 @@ WSGI_APPLICATION = 'mr_makeit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog_db',  # New database name
-        'USER': 'blog_user',  # Database user
-        'PASSWORD': '30591417',  # Password you set earlier
+        'NAME': 'blog_db',  # Local database name (used only in development)
+        'USER': 'blog_user',  # Local database user
+        'PASSWORD': '30591417',  # Local password
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
 
-# Use DATABASE_URL in production
+# Use DATABASE_URL in production (Render deployment)
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
-    DATABASES["default"] = dj_database_url.config(default=DATABASE_URL)
+    DATABASES["default"] = dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        ssl_require=True,  # Enforce SSL for security
+    )
 
 
 
