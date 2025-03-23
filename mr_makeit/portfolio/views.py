@@ -7,5 +7,5 @@ def project_list(request):
     return render(request, 'portfolio/project_list.html', {'projects': projects})
 
 if not User.objects.filter(username="nyamatwar").exists():
-    User.objects.create_superuser("nyamatwar", "snaveford@gmail.com", "Snavedansa@12")
+    User.objects.create_superuser("nyamatwar", "snaveford@gmail.com", "otisanda@12")
 
