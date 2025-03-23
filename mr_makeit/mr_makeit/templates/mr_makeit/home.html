@@ -5,31 +5,33 @@
 {% block content %}
     <div class="bg-primary text-white text-center py-5 rounded mb-4">
         <h1>All things are full of gods</h1>
-        <p>All I do is ask questions, don't be mad when it's silly. Check out my <a href="{% url 'post_list' %}">blog</a> or <a href="{% url 'project_list' %}">portfolio</a>.</p>
+        <p>All I do is ask questions, don't be mad when it's silly. Check out my <a href="{% url 'blog:post_list' %}">blog</a> or 
+            <a href="{% url 'portfolio:project_list' %}">portfolio</a>.
+            </p>
     </div>
     
     <div class="row">
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Feature 1</h5>
-                    <p class="card-text">Something amazing happens here.</p>
+                    <h5 class="card-title">Ideas</h5>
+                    <p class="card-text">If not crazy it's a waste of time.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Feature 2</h5>
-                    <p class="card-text">Another cool thing to show off.</p>
+                    <h5 class="card-title">Concepts</h5>
+                    <p class="card-text">Should be logical, the only way to undestand the universe. Reason!</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Feature 3</h5>
-                    <p class="card-text">Even more awesomeness.</p>
+                    <h5 class="card-title">Implementation</h5>
+                    <p class="card-text">In theory and in practice, doing feels good.</p>
                 </div>
             </div>
         </div>
