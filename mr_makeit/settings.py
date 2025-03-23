@@ -95,21 +95,23 @@ if DATABASE_URL:
         "default": dj_database_url.config(
             default=DATABASE_URL,
             conn_max_age=600,
-            ssl_require=True,  # Ensure SSL is enabled for production
+            ssl_require=False  # ❌ Disable SSL (change from True to False)
         )
     }
 else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "blog_db",
-            "USER": "blog_user",
-            "PASSWORD": "30591417",
-            "HOST": "localhost",
-            "PORT": "5432",
+            "NAME": "blog_db",      # Your database name
+            "USER": "blog_user",    # Your database user
+            "PASSWORD": "30591417",  # Your actual password
+            "HOST": "127.0.0.1",    # Connect to local database
+            "PORT": "5432",         # Default PostgreSQL port
+            "OPTIONS": {
+                "sslmode": "disable",  # ❌ Explicitly disable SSL
+            },
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
