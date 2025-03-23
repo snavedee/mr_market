@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div class="bg-primary text-white text-center py-5 rounded mb-4">
+        <h1>All things are full of gods</h1>
+        <p>All I do is ask questions, don't be mad when it's silly. Check out my <a href="{% url 'post_list' %}">blog</a> or <a href="{% url 'project_list' %}">portfolio</a>.</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Feature 1</h5>
+                    <p class="card-text">Something amazing happens here.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Feature 2</h5>
+                    <p class="card-text">Another cool thing to show off.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Feature 3</h5>
+                    <p class="card-text">Even more awesomeness.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
