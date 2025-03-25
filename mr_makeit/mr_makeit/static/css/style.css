@@ -37,3 +37,14 @@ body {
 .card:hover {
     transform: scale(1.05); /* Slight zoom on hover */
 }
+
+/* Links in bg-primary sections */
+.bg-primary.text-white p a {
+    color: #f1c40f !important; /* Bright yellow */
+    text-decoration: underline !important;
+    transition: color 0.3s ease-in-out;
+}
+
+.bg-primary.text-white p a:hover {
+    color: #e91e63 !important; /* Hot pink on hover */
+}

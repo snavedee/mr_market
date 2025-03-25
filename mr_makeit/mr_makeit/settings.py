@@ -14,11 +14,16 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+# Base directory (ensure this is already defined earlier in settings.py)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -37,6 +42,8 @@ ALLOWED_HOSTS = [
     "localhost",
     ]
 
+CSRF_TRUSTED_ORIGINS = ["https://mr-market-653t.onrender.com"]
+
 
 # Application definition
 
@@ -54,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,30 +96,37 @@ WSGI_APPLICATION = 'mr_makeit.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Get DATABASE_URL from environment (set by Render in production)
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL:
+    # Production (Render) - Use DATABASE_URL from environment
     DATABASES = {
         "default": dj_database_url.config(
             default=DATABASE_URL,
             conn_max_age=600,
-            ssl_require=False  # ❌ Disable SSL (change from True to False)
+            ssl_require=True  # Render PostgreSQL requires SSL
         )
     }
 else:
+    # Local development fallback - Use SQLite
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "blog_db",      # Your database name
-            "USER": "blog_user",    # Your database user
-            "PASSWORD": "30591417",  # Your actual password
-            "HOST": "127.0.0.1",    # Connect to local database
-            "PORT": "5432",         # Default PostgreSQL port
-            "OPTIONS": {
-                "sslmode": "disable",  # ❌ Explicitly disable SSL
-            },
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
+
+# Move superuser creation to a try-except with logging
+try:
+    from django.contrib.auth.models import User
+    if not User.objects.filter(username="nyamatwar").exists():
+        User.objects.create_superuser("nyamatwar", "snaveford@gmail.com", "Test1234!")
+        logger.info("Superuser 'nyamatwar' created successfully")
+    else:
+        logger.info("Superuser 'nyamatwar' already exists")
+except Exception as e:
+    logger.error(f"Failed to create superuser: {str(e)}")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -149,8 +164,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # Ensure Render serves static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Middleware for static files on Render
 MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
