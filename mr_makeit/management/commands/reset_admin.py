@@ -5,8 +5,8 @@ class Command(BaseCommand):
     help = "Reset the password for the admin user"
 
     def handle(self, *args, **kwargs):
-        username = "nyamatwar"
-        new_password = "snavedansa@12"
+        username = "sanda"
+        new_password = "30591417"
 
         try:
             user = User.objects.get(username=username)

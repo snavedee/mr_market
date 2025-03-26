@@ -120,11 +120,11 @@ else:
 # Move superuser creation to a try-except with logging
 try:
     from django.contrib.auth.models import User
-    if not User.objects.filter(username="nyamatwar").exists():
-        User.objects.create_superuser("nyamatwar", "snaveford@gmail.com", "Test1234!")
-        logger.info("Superuser 'nyamatwar' created successfully")
+    if not User.objects.filter(username="sanda").exists():
+        User.objects.create_superuser("sanda", "snaveford@gmail.com", "30591417")
+        logger.info("Superuser 'sanda' created successfully")
     else:
-        logger.info("Superuser 'nyamatwar' already exists")
+        logger.info("Superuser 'sanda' already exists")
 except Exception as e:
     logger.error(f"Failed to create superuser: {str(e)}")
 
