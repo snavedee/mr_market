@@ -15,6 +15,7 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 import logging
+from django.core.management import call_command
 
 load_dotenv()
 
@@ -117,16 +118,9 @@ else:
         }
     }
 
-# Move superuser creation to a try-except with logging
-try:
-    from django.contrib.auth.models import User
-    if not User.objects.filter(username="sanda").exists():
-        User.objects.create_superuser("sanda", "snaveford@gmail.com", "30591417")
-        logger.info("Superuser 'sanda' created successfully")
-    else:
-        logger.info("Superuser 'sanda' already exists")
-except Exception as e:
-    logger.error(f"Failed to create superuser: {str(e)}")
+
+if os.getenv('RENDER') == 'true':  # Render sets this env var
+    call_command('reset_admin_password')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
