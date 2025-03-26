@@ -15,7 +15,6 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 import logging
-from django.core.management import call_command
 
 load_dotenv()
 
@@ -44,6 +43,8 @@ ALLOWED_HOSTS = [
     ]
 
 CSRF_TRUSTED_ORIGINS = ["https://mr-market-653t.onrender.com"]
+CSRF_COOKIE_SECURE = False  # Only for debugging, set back to True for production
+SESSION_COOKIE_SECURE = False  # Only for debugging
 
 
 # Application definition
@@ -118,11 +119,6 @@ else:
         }
     }
 
-
-# Run migrations and reset admin password on Render startup
-if os.getenv('RENDER') == 'true':
-    call_command('migrate')  # Apply migrations first
-    call_command('reset_admin_password')  # Then create/reset superuser
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
