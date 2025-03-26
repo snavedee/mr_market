@@ -119,8 +119,10 @@ else:
     }
 
 
-if os.getenv('RENDER') == 'true':  # Render sets this env var
-    call_command('reset_admin_password')
+# Run migrations and reset admin password on Render startup
+if os.getenv('RENDER') == 'true':
+    call_command('migrate')  # Apply migrations first
+    call_command('reset_admin_password')  # Then create/reset superuser
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
