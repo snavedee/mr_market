@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Detail</title>
-    <script type="text/javascript" src="https://pyscript.net/latest/pyscript.js"></script>
+    <title>{{ post.title }}</title>
 </head>
 <body>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
 
-    <py-script>
-        print("Hello from Python!")
-    </py-script>
+    <!-- Share on X Button -->
+    <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ request.build_absolute_uri }}"
+       target="_blank" rel="noopener noreferrer">
+        Share on X 🐦
+    </a>
 </body>
 </html>
