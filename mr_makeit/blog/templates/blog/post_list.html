@@ -3,15 +3,9 @@
 {% block content %}
     <h1>Blog Posts</h1>
     {% for post in posts %}
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.content }}</p>
-
-        <!-- Share on X Button -->
-        <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ request.build_absolute_uri }}" 
-           target="_blank" rel="noopener noreferrer">
-            Share on X 🐦
-        </a>
-
-        <hr> <!-- Adds a separator between posts -->
+        <h2>
+            <a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a>
+        </h2>
+        <p>{{ post.content|truncatewords:30 }}</p>  <!-- Show only a preview -->
     {% endfor %}
 {% endblock %}
