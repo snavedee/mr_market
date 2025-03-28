@@ -4,9 +4,25 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
 
-    <!-- Share on X Button -->
+    <!-- Share Buttons -->
+    <p>Share this post:</p>
+
+    <!-- Share on X (Twitter) -->
     <a href="https://twitter.com/intent/tweet?text={{ post.title|urlencode }}&url={{ request.build_absolute_uri }}" 
        target="_blank" rel="noopener noreferrer">
         Share on X 🐦
     </a>
+
+    <!-- Share on WhatsApp -->
+    <a href="https://wa.me/?text={{ post.title|urlencode }}%20{{ request.build_absolute_uri }}" 
+       target="_blank" rel="noopener noreferrer">
+        Share on WhatsApp 📱
+    </a>
+
+    <!-- Share on LinkedIn -->
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
+       target="_blank" rel="noopener noreferrer">
+        Share on LinkedIn 🔗
+    </a>
+
 {% endblock %}
