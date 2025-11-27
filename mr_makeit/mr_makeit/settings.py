@@ -36,11 +36,7 @@ SECRET_KEY = 'django-insecure-0=l#@u1ndn%*pvxb$fo=s&xp+=nl(14p54&h%vbdlx9e)(qpe(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "mr-market-653t.onrender.com",  # Add your Render domain
-    "127.0.0.1",  # Local development
-    "localhost",
-    ]
+ALLOWED_HOSTS = [".onrender.com", "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = ["https://mr-market-653t.onrender.com"]
 CSRF_COOKIE_SECURE = False  # Only for debugging, set back to True for production
